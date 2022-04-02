@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class LinkEntity {
+class LinkEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     private String id;

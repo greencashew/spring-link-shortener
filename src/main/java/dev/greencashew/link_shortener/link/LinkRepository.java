@@ -11,4 +11,5 @@ interface LinkRepository extends CrudRepository<LinkEntity, String> {
     @Query("SELECT e FROM LinkEntity e WHERE e.expirationDate < ?1")
     List<LinkEntity> findLinksBeforeDate(LocalDate localDate);
 
+    List<LinkEntity> findAllByVisitsGreaterThan(int minimumVisits);
 }
