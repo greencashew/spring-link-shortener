@@ -11,12 +11,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 
 @RestController
+@Validated
 @AllArgsConstructor
 @RequestMapping("/links")
 class LinkManageController {
@@ -42,7 +44,7 @@ class LinkManageController {
                     }
                     """))),
     })
-    LinkDto createLink(@Valid @RequestBody CreateLinkDto link) {
+    LinkDto createLink(@RequestBody @Valid CreateLinkDto link) {
         return service.createLink(link.toDto());
     }
 
