@@ -16,7 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 @Slf4j
 @Hidden
 @ControllerAdvice
-class LinkManageControllerAdvisor {
+class ControllerAdvisor {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.CONFLICT)
