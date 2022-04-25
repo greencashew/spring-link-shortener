@@ -1,12 +1,10 @@
 package dev.greencashew.link_shortener.configuration;
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,8 +13,6 @@ class DocumentationConfiguration {
     @Bean
     public OpenAPI springLinkShortenerDocumentation() {
         return new OpenAPI()
-                .components(new Components().addSecuritySchemes("basicScheme", new SecurityScheme()
-                        .type(SecurityScheme.Type.HTTP).scheme("basic")))
                 .info(new Info().title("Link Shortener")
                         .description("""
                                 It is fully featured link shortener written in Java 17 and Spring Framework.
