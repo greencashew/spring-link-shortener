@@ -23,15 +23,9 @@ class RedirectController {
     private final LinkService service;
 
     @GetMapping("/{id}")
-    @Operation(description = "Redirect link by it's identifier. This endpoint has to be tested by direct GET request in browser.", responses = {
-            @ApiResponse(responseCode = "302", description = "User is redirected to expected location.", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Shortened link not found.", content = @Content(examples =
-            @ExampleObject(value = """
-                        {
-                          "errorMessage": "Shortened link link-alias not found."
-                        }
-                    """)))
-    })
+    @Operation(description = "Redirect link by it's identifier. This endpoint has to be tested by direct GET request in browser.")
+    @ApiResponse(responseCode = "302", description = "User is redirected to expected location.", content = @Content)
+    @ApiResponse(responseCode = "404", description = "Shortened link not found.", content = @Content(examples = @ExampleObject(value = "{\"errorMessage\": \"Shortened link link-alias not found.\"}")))
     public void redirectLink(
             @Schema(description = "Identifier/alias to link. Used for redirection.", example = "link-alias", required = true)
             @PathVariable String id, HttpServletResponse httpServletResponse) throws IOException {

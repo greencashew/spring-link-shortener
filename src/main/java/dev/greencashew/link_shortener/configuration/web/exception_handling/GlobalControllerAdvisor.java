@@ -1,5 +1,8 @@
 package dev.greencashew.link_shortener.configuration.web.exception_handling;
 
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 class GlobalControllerAdvisor {
 
+    @ApiResponse(description = "Invalid data provided.", content = @Content(examples = @ExampleObject(value = "{\"errorMessage\": \"expirationDate (2014-06-23) must be a future date, email (incorrect_email) must be a well-formed email address\"}")))
     @ResponseBody
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

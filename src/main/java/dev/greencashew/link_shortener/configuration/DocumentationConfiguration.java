@@ -1,9 +1,12 @@
 package dev.greencashew.link_shortener.configuration;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,10 +15,21 @@ class DocumentationConfiguration {
     @Bean
     public OpenAPI springLinkShortenerDocumentation() {
         return new OpenAPI()
+                .components(new Components().addSecuritySchemes("basicScheme", new SecurityScheme()
+                        .type(SecurityScheme.Type.HTTP).scheme("basic")))
                 .info(new Info().title("Link Shortener")
-                        .description("Spring based link shortener")
+                        .description("""
+                                It is fully featured link shortener written in Java 17 and Spring Framework.
+                                                        
+                                Supported features:
+                                - Create/Read/Update/Delete shortened link
+                                - Redirect to specific page by short link identifier
+                                - Handle business exception like: LinkNotFound, LinkAlreadyExists or IncorrectAdminVerification
+                                - Application automatically delete expired links within specified period
+                                """)
                         .version("v0.0.1")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
+                        .contact(new Contact().name("Jan Górkiewicz").url("https://greencashew.dev"))
+                        .license(new License().name("Apache 2.0")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Project created as educational material of spring course 'Warsztaty Podstawy Springa'.")
                         .url("https://github.com/greencashew/warsztaty-podstawy-springa"));
