@@ -23,9 +23,8 @@ class RedirectController {
     private final LinkService service;
 
     @GetMapping("/{id}")
-    @Operation(description = "Retrieve link by it's identifier", responses = {
-            @ApiResponse(responseCode = "302", description = "User is redirected to expected location.", content = @Content(examples =
-            @ExampleObject(value = ""))),
+    @Operation(description = "Redirect link by it's identifier. This endpoint has to be tested by direct GET request in browser.", responses = {
+            @ApiResponse(responseCode = "302", description = "User is redirected to expected location.", content = @Content),
             @ApiResponse(responseCode = "404", description = "Shortened link not found.", content = @Content(examples =
             @ExampleObject(value = """
                         {

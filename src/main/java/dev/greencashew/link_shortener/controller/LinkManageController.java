@@ -51,7 +51,7 @@ class LinkManageController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    @Operation(description = "This endpoint has to be tested by direct GET request in browser. Retrieve link by it's identifier.", responses = {
+    @Operation(description = "Retrieve link by it's identifier.", responses = {
             @ApiResponse(responseCode = "200", description = "Data related to shortened link.", content = @Content(examples =
             @ExampleObject(value = """
                     {
