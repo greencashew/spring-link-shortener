@@ -89,7 +89,7 @@ class LinkManageController {
             @ApiResponse(responseCode = "403", description = "Incorrect email address to link identifier.", content = @Content(examples =
             @ExampleObject(value = """
                     {
-                      "errorMessage": "Link link-alias is not related with email: test@greencashew"
+                      "errorMessage": "Link link-alias is not related with email: youremail@example.com"
                     }
                     """)))
     })
@@ -107,8 +107,7 @@ class LinkManageController {
     }
 
     @Operation(description = "Update shortened link", responses = {
-            @ApiResponse(responseCode = "204", description = "Confirmation that shortened link has been deleted.", content = @Content(examples =
-            @ExampleObject(value = ""))),
+            @ApiResponse(responseCode = "204", description = "Confirmation that shortened link has been deleted.", content = @Content),
             @ApiResponse(responseCode = "404", description = "Shortened link link-alias not found.", content = @Content(examples =
             @ExampleObject(value = """
                         {
@@ -118,7 +117,7 @@ class LinkManageController {
             @ApiResponse(responseCode = "403", description = "Incorrect email address to link identifier.", content = @Content(examples =
             @ExampleObject(value = """
                     {
-                      "errorMessage": "Link link-alias is not related with email: test@greencashew"
+                      "errorMessage": "Link link-alias is not related with email: youremail@example.com"
                     }
                     """)))
     })
