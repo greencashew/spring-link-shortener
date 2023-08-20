@@ -8,13 +8,14 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.net.URI;
 
 @RestController
 @AllArgsConstructor
@@ -26,10 +27,14 @@ class RedirectController {
     @Operation(description = "Redirect link by it's identifier. This endpoint has to be tested by direct GET request in browser.")
     @ApiResponse(responseCode = "302", description = "User is redirected to expected location.", content = @Content)
     @ApiResponse(responseCode = "404", description = "Shortened link not found.", content = @Content(examples = @ExampleObject(value = "{\"errorMessage\": \"Shortened link link-alias not found.\"}")))
-    public void redirectLink(
+    public ResponseEntity<Void> redirectLink(
             @Schema(description = "Identifier/alias to link. Used for redirection.", example = "link-alias", required = true)
-            @PathVariable String id, HttpServletResponse httpServletResponse) throws IOException {
+            @PathVariable String id) {
         final LinkDto linkDto = service.gatherLinkAndIncrementVisits(id);
-        httpServletResponse.sendRedirect(linkDto.targetUrl());
+
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .location(URI.create(linkDto.targetUrl()))
+                .build();
     }
 }
